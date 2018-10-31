@@ -19,11 +19,11 @@ node {
         rm -rf /root/tomcat9/webapps/hello-world-war-*
 		rm -rf hello-world-war-*
 		echo checking war files in tomcat server.
-		ls /usr/local/tomcat9/webapps/
+		ls /root/tomcat9/webapps/
 		
         echo Step-2: Staging the new package to tomcat server.
         sudo wget --user=deployment --password=deployment123 "http://${nexusip}:8081/nexus/service/local/artifact/maven/redirect?r=snapshots&g=com.efsavage&a=hello-world-war&v=LATEST&e=war" --content-disposition 
-        cp hello-world-war-*.war /usr/local/tomcat9/webapps
+        cp hello-world-war-*.war /root/tomcat9/webapps
         echo "RESTART tomcat server".
         /root/tomcat9/bin/catalina.sh stop
 
