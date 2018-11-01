@@ -10,7 +10,8 @@ node('Docker') {
         sh "mvn deploy"
       }
     stage('create Container'){
-    	removeContainer("sh sudo docker ps -a | grep hello-world-${version} -c")
+    	def count=sh "sudo docker ps -a | grep hello-world-${version} -c"
+    	removeContainer(count)
         sh '''
 		sudo docker login --username vsuryateja --password ${DockerRepoPasswd}
 		sudo docker build -t hello-world --build-arg nexusip=${nexusip} .
