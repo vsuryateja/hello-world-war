@@ -14,7 +14,7 @@ node('Docker') {
 		sudo docker login --username vsuryateja --password ${DockerRepoPasswd}
 		sudo docker build -t hello-world --build-arg nexusip=${nexusip} --build-arg passwd=${DockerRepoPasswd} .
 		count=$(docker ps -a | grep hello-world-1.0.0 -c)
-		if(count -eq 1)
+		if($count -eq 1)
 		then
 			sudo docker rm 	hello-world-${version} -f
 		fi
