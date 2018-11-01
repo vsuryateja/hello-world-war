@@ -10,7 +10,6 @@ node('Docker') {
         sh "mvn deploy"
       }
     stage('create Container'){
-    	count=$(sh "sudo docker ps -a | grep hello-world-${version} -c")
 	try {
 		sh "sudo docker rm hello-world-${version} -f"
 	} catch (Exception e) {
