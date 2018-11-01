@@ -22,7 +22,7 @@ node('Docker') {
       }
 }
 def removeContainer(int count){
-    	if (count == 0){
+    	if (count>0){
 		sudo docker rm 	hello-world-${version} -f
 	} else{
 		echo "No container avilable"
