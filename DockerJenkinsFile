@@ -12,9 +12,11 @@ node('Docker') {
     stage('create Container'){
         sh '''
 		sudo docker login --username vsuryateja --password ${DockerRepoPasswd}
-		sudo docker build -t hellow-world-${version} --build-arg nexusip=${nexusip} .
-		sudo docker run -id --name hellow-world -p 8080:8080 hello-world-${version}
-		sudo docker tag hello-world-${version} vsuryateja/hello-world:${version}
+		sudo docker rm hello-world-${version} -f
+		sudo docker rmi hello-world -f
+		sudo docker build -t hello-world --build-arg worldnexusip=${nexusip} .
+		sudo docker run -id --name hello-world-${version} -p 8080:8080 hello-world
+		sudo docker tag hello-world vsuryateja/hello-world:${version}
 		sudo docker push vsuryateja/hello-world:${version}
 		'''
       }
