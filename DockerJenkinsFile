@@ -11,7 +11,7 @@ node {
       }
     stage('create Container'){
         sh '
-		sudo docker login --username vsuryateja --password v252367V
+		sudo docker login --username vsuryateja --password ${DockerRepoPasswd}
 		sudo docker build -t hellow-world-${version} --build-arg nexusip=${nexusip} .
 		sudo docker run -id --name hellow-world -p 8080:8080 hello-world-${version}
 		sudo docker tag hello-world-${version} vsuryateja/hello-world:${version}
