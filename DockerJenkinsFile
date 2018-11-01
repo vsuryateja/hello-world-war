@@ -12,7 +12,7 @@ node('Docker') {
     stage('create Container'){
         sh '''
 		sudo docker login --username vsuryateja --password ${DockerRepoPasswd}
-		sudo docker build -t hello-world --build-arg nexusip=${nexusip} --build-arg passwd=${DockerRepoPasswd} .
+		sudo docker build -t hello-world --build-arg nexusip=${nexusip} .
 		count=$(docker ps -a | grep hello-world-1.0.0 -c)
 		if($count -gt 0)
 		then
