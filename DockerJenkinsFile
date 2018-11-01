@@ -14,15 +14,18 @@ node('Docker') {
 		sudo docker login --username vsuryateja --password ${DockerRepoPasswd}
 		sudo docker build -t hello-world --build-arg nexusip=${nexusip} .
 		count=$(docker ps -a | grep hello-world-${version} -c)
-		if [ $count -gt 0 ]
-		then
-			sudo docker rm 	hello-world-${version} -f
-		else
-			echo "No container avilable"
-		fi
+		removeContainer(count)
 		sudo docker run -id --name hello-world-${version} -p 8080:8080 hello-world
 		sudo docker tag hello-world vsuryateja/hello-world:${version}
 		sudo docker push vsuryateja/hello-world:${version}
 		'''
       }
+}
+def removeContainer(int count){
+    	if [ $count -gt 0 ]
+		then
+			sudo docker rm 	hello-world-${version} -f
+		else
+			echo "No container avilable"
+		fi
 }
