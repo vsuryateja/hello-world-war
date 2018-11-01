@@ -10,11 +10,10 @@ node('Docker') {
         sh "mvn deploy"
       }
     stage('create Container'){
+    	removeContainer(sh "sudo docker ps -a | grep hello-world-${version} -c")
         sh '''
 		sudo docker login --username vsuryateja --password ${DockerRepoPasswd}
 		sudo docker build -t hello-world --build-arg nexusip=${nexusip} .
-		def count=$(docker ps -a | grep hello-world-${version} -c)
-		removeContainer(count)
 		sudo docker run -id --name hello-world-${version} -p 8080:8080 hello-world
 		sudo docker tag hello-world vsuryateja/hello-world:${version}
 		sudo docker push vsuryateja/hello-world:${version}
@@ -23,7 +22,7 @@ node('Docker') {
 }
 def removeContainer(int count){
     	if (count>0){
-		sudo docker rm 	hello-world-${version} -f
+		sh "sudo docker rm hello-world-${version} -f"
 	} else{
 		echo "No container avilable"
 	 }
