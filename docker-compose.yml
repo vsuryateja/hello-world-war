@@ -1,0 +1,12 @@
+version: '3'
+services:
+  helloworld:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - nexusip
+    image: helloworld
+    container_name: hello_world
+    ports:
+      - "8088:8080"
