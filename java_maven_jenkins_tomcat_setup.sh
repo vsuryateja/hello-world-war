@@ -14,7 +14,7 @@ echo install wget downloaded.
 echo JAVA Setup
 #download JDK rpm
 echo download JDK rpm
-wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.rpm
+wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.rpm
 #Install RPM
 echo Install RPM
 rpm -i jdk-8u191-linux-x64.rpm
