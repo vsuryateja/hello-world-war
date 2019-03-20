@@ -28,5 +28,6 @@ node {
         /root/tomcat9/bin/catalina.sh stop
 
         /root/tomcat9/bin/catalina.sh start
-        '''      }
+        '''      
+	}
 }
